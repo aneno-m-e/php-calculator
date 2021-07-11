@@ -17,36 +17,36 @@
       
     <form action="" id="calculator" method="post">
         <div class="row">
-            <input type="text" id="display" value="start" disabled>
+            <input type="text" value="display" value="start" disabled>
         </div> <!--check-->
         <div class="row">
-            <input type="submit" value="AC" id="clear-all">
-            <input type="submit" value="C" id="clear">
-            <input type="submit" value="Ans" id="previous-result">
-            <input type="submit" value="/" id="divide">
+            <input type="submit" value="AC" value="clear-all">
+            <input type="submit" value="C" value="clear">
+            <input type="submit" value="Ans" value="previous-result">
+            <input type="submit" value="/" value="divide">
           </div>
         <div class="row">
-          <input type="submit" value="7" id="seven">
-          <input type="submit" value="8" id="eight">
-          <input type="submit" value="9" id="nine">
-          <input type="submit" value="*" id="multiply">
+          <input type="submit" value="7" value="seven">
+          <input type="submit" value="8" value="eight">
+          <input type="submit" value="9" value="nine">
+          <input type="submit" value="*" value="multiply">
         </div>
         <div class="row">
-          <input type="submit" value="4" id="four">
-          <input type="submit" value="5" id="five">
-          <input type="submit" value="6" id="six">
-          <input type="submit" value="-" id="substract">
+          <input type="submit" value="4" value="four">
+          <input type="submit" value="5" value="five">
+          <input type="submit" value="6" value="six">
+          <input type="submit" value="-" value="substract">
         </div>
         <div class="row">
-          <input type="submit" value="1" id="one">
-          <input type="submit" value="2" id="two">
-          <input type="submit" value="3" id="three">
-          <input type="submit" value="+" id="add" class="tall">
+          <input type="submit" value="1" value="one">
+          <input type="submit" value="2" value="two">
+          <input type="submit" value="3" value="three">
+          <input type="submit" value="+" value="add" class="tall">
         </div>
         <div class="row">
-          <input type="submit" value="0" id="zero">
-          <input type="submit" value="." id="decimal">
-          <input type="submit" value="=" id="equals">
+          <input type="submit" value="0" value="zero">
+          <input type="submit" value="." value="decimal">
+          <input type="submit" value="=" value="equals">
           
         </div>
 </form>
