@@ -1,0 +1,56 @@
+* {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  color: #ccefff;
+  background-color: #012c34;
+  font-family: "Trebuchet MS", helvetica, sans-serif;
+  margin: 0;
+  position: relative;
+  min-height: 100%;
+}
+
+header {
+  width: 100vw;
+  text-align: center;
+}
+
+main {
+  width: 100%;
+}
+
+/* Calculator */
+
+#calculator {
+  width: 30em;
+  margin: 0 auto;
+}
+
+#calculator h1 {
+  text-align: center;
+}
+
+#calculator #display {
+  width: 32.5em;
+  height: 3em;
+  margin-bottom: 0.2em;
+}
+
+#calculator .row {
+  text-align: left;
+  padding-top: 0.2em;
+}
+
+#calculator .row input {
+  width: 8em;
+  height: 4em;
+}
+
+/* #calculator input {
+  } */
