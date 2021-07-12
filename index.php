@@ -1,3 +1,42 @@
+
+  <?php
+
+$display=implode(" ", $calculation) . implode("", current_step);
+$calculation=[];
+$current_step = [];
+$previous_calculation = [];
+
+if(isset($_POST)) {
+ foreach($_POST as $key => $value) {
+   switch($_POST[$key]){
+     case(is_numeric($_POST[$key])):
+      break;
+    case($_POST[$key] === "."):
+      break;  
+    case($_POST[$key] === "+"):
+      break;
+    case($_POST[$key] === "-"):
+      break;
+    case($_POST[$key] === "*"):
+      break;
+    case($_POST[$key] === "/"):
+      break;
+    case($_POST[$key] === "="):
+      break;
+    case($_POST[$key] === "C"):
+      break;  
+    case($_POST[$key] === "AC"):
+      break;  
+    case($_POST[$key] === "Ans"):
+      break; 
+   }
+ }
+   
+
+}
+
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,39 +53,39 @@
   </header>
    
     <main>
-      
+
     <form action="" id="calculator" method="post">
         <div class="row">
-            <input type="text" value="display" value="start" disabled>
+            <input type="text" id="display" name="display" value="<?= $display ?>" disabled>
         </div> <!--check-->
         <div class="row">
-            <input type="submit" value="AC" value="clear-all">
-            <input type="submit" value="C" value="clear">
-            <input type="submit" value="Ans" value="previous-result">
-            <input type="submit" value="/" value="divide">
+            <input type="submit" value="AC" name="clear-all">
+            <input type="submit" value="C" name="clear">
+            <input type="submit" value="Ans" name="previous-result">
+            <input type="submit" value="/" name="divide">
           </div>
         <div class="row">
-          <input type="submit" value="7" value="seven">
-          <input type="submit" value="8" value="eight">
-          <input type="submit" value="9" value="nine">
-          <input type="submit" value="*" value="multiply">
+          <input type="submit" value="7" name="seven">
+          <input type="submit" value="8" name="eight">
+          <input type="submit" value="9" name="nine">
+          <input type="submit" value="*" name="multiply">
         </div>
         <div class="row">
-          <input type="submit" value="4" value="four">
-          <input type="submit" value="5" value="five">
-          <input type="submit" value="6" value="six">
-          <input type="submit" value="-" value="substract">
+          <input type="submit" value="4" name="four">
+          <input type="submit" value="5" name="five">
+          <input type="submit" value="6" name="six">
+          <input type="submit" value="-" name="substract">
         </div>
         <div class="row">
-          <input type="submit" value="1" value="one">
-          <input type="submit" value="2" value="two">
-          <input type="submit" value="3" value="three">
-          <input type="submit" value="+" value="add" class="tall">
+          <input type="submit" value="1" name="one">
+          <input type="submit" value="2" name="two">
+          <input type="submit" value="3" name="three">
+          <input type="submit" value="+" name="add" class="tall">
         </div>
         <div class="row">
-          <input type="submit" value="0" value="zero">
-          <input type="submit" value="." value="decimal">
-          <input type="submit" value="=" value="equals">
+          <input type="submit" value="0" name="zero">
+          <input type="submit" value="." name="decimal">
+          <input type="submit" value="=" name="equals">
           
         </div>
 </form>
@@ -54,4 +93,5 @@
  
  
   </body>
+
 </html>
