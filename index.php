@@ -27,6 +27,7 @@ if(isset($_POST)) {
       break;  
     case($_POST[$key] === "AC"):
       $calculation = [];
+      $current_step = [];
       break;  
     case($_POST[$key] === "Ans"):
       $calculation = $previous_calculation;
