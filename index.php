@@ -1,8 +1,8 @@
 
   <?php
 
-$display=implode(" ", $calculation) . implode("", current_step);
-$calculation=[];
+// $display=
+$calculation = [];
 $current_step = [];
 $previous_calculation = [];
 
@@ -34,10 +34,8 @@ if(isset($_POST)) {
       $calculation = $previous_calculation;
       break; 
    }
- }
+ }}
    
-
-}
 
 
 ?>
@@ -60,7 +58,7 @@ if(isset($_POST)) {
 
     <form action="" id="calculator" method="post">
         <div class="row">
-            <input type="text" id="display" name="display" value="<?= $display ?>" disabled>
+            <input type="text" id="display" name="display" value="<?= implode(" ", $calculation) . implode("", $current_step); ?>" disabled>
         </div> <!--check-->
         <div class="row">
             <input type="submit" value="AC" name="clear-all">
