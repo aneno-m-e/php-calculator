@@ -1,42 +1,51 @@
 
   <?php
 
-// $display=
-$calculation = [];
-$current_step = [];
+
+$total_input = [];
+$current_input = [];
+$result = 0;
 $previous_calculation = [];
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){ 
+  if(isset($_POST["total_input"]))
+    $total_input = json_decode($_POST['total_input']);
+    $current_input = json_decode($_POST['current_input']);
 
 if(isset($_POST)) {
  foreach($_POST as $key => $value) {
-   switch($_POST[$key]){
-     case(is_numeric($_POST[$key])):
+   if($key != "total_input")
+   switch($value){
+     case($value === "0"): //Need to solve is_numeric("0") returning false
+     case(is_numeric($value)):
+      array_push($current_input, $value);
       break;
-    case($_POST[$key] === "."):
-      break;  
-    case($_POST[$key] === "+"):
-      break;
-    case($_POST[$key] === "-"):
-      break;
-    case($_POST[$key] === "*"):
-      break;
-    case($_POST[$key] === "/"):
-      break;
-    case($_POST[$key] === "="):
-      break;
-    case($_POST[$key] === "C"):
-      $current_step = [];
-      break;  
-    case($_POST[$key] === "AC"):
-      $calculation = [];
-      $current_step = [];
-      break;  
-    case($_POST[$key] === "Ans"):
-      $calculation = $previous_calculation;
-      break; 
+    // case($_POST[$key] === "."):
+    //   break;  
+    // case($_POST[$key] === "+"):
+    //   break;
+    // case($_POST[$key] === "-"):
+    //   break;
+    // case($_POST[$key] === "*"):
+    //   break;
+    // case($_POST[$key] === "/"):
+    //   break;
+    // case($_POST[$key] === "="):
+    //   break;
+    // case($_POST[$key] === "C"):
+    //   array_pop($total_input);
+    //   break;  
+    // case($_POST[$key] === "AC"):
+    //   $calculation = [];
+    //   break;  
+    // case($_POST[$key] === "Ans"):
+    //   $calculation = $previous_calculation;
+    //   break; 
    }
+ 
  }}
    
-
+}
 
 ?>
 <!DOCTYPE html>
@@ -57,8 +66,11 @@ if(isset($_POST)) {
     <main>
 
     <form action="" id="calculator" method="post">
-        <div class="row">
-            <input type="text" id="display" name="display" value="<?= implode(" ", $calculation) . implode("", $current_step); ?>" disabled>
+        <div id="display">
+            <input type="hidden" name="total_input" value='<?php echo json_encode($total_input) ?>' >
+            <input type="hidden" name="current_input" value='<?php echo json_encode($current_input) ?>' >
+            <p><?= implode("", $total_input) . implode("", $current_input); ?></p>
+            <input type="text" name="result" value="<?= $result; ?>" disabled>
         </div> <!--check-->
         <div class="row">
             <input type="submit" value="AC" name="clear-all">
