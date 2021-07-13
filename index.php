@@ -37,9 +37,10 @@ if(isset($_POST)) {
     // case($_POST[$key] === "C"):
     //   array_pop($total_input);
     //   break;  
-    // case($_POST[$key] === "AC"):
-    //   $calculation = [];
-    //   break;  
+    case($value === "AC"):
+      $current_input = [];
+      $calculation = [];
+      break;  
     // case($_POST[$key] === "Ans"):
     //   $calculation = $previous_calculation;
     //   break; 
