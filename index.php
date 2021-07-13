@@ -16,33 +16,33 @@ if(isset($_POST)) {
  foreach($_POST as $key => $value) {
    if($key != "total_input")
    switch($value){
-     case($value === "0"): //Need to solve is_numeric("0") returning false
-     case(is_numeric($value)):
+    case "0": //Need to solve is_numeric("0") returning false
+    case is_numeric($value):
       array_push($current_input, $value);
       break;
-    case($value === "."):;
+    case ".":
       if(!in_array(".", $current_input)) 
         $current_input[] = $value;
       break;  
-    case($_POST[$key] === "+"):
-    case($_POST[$key] === "-"):
-    case($_POST[$key] === "*"):
-    case($_POST[$key] === "/"):
+    case "+":
+    case "-":
+    case "*":
+    case "/":
       //Need to handle case where a number ends with a period
       if(count($current_input) > 0 && is_numeric($current_input[count($current_input)-1])) 
         array_push($total_input, implode("", $current_input), $value);
         $current_input = [];
       break;
-    // case($_POST[$key] === "="):
+    // case($value === "="):
     //   break;
-    case($_POST[$key] === "C"):
+    case "C":
       $current_input = [];
       break;  
-    case($value === "AC"):
+    case "AC":
       $current_input = [];
-      $calculation = [];
+      $total_input = [];
       break;  
-    // case($_POST[$key] === "Ans"):
+    // case "Ans":
     //   $calculation = $previous_calculation;
     //   break; 
    }
