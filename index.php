@@ -20,8 +20,10 @@ if(isset($_POST)) {
      case(is_numeric($value)):
       array_push($current_input, $value);
       break;
-    // case($_POST[$key] === "."):
-    //   break;  
+    case($value === "."):;
+      if(!in_array(".", $current_input)) 
+        $current_input[] = $value;
+      break;  
     // case($_POST[$key] === "+"):
     //   break;
     // case($_POST[$key] === "-"):
