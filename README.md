@@ -33,7 +33,7 @@ After solving the previous issue, my code would store the first input but breack
 2. I then checked:
    - the value I was trying to append, and it was ok,
    - the array: and it returned nothing.
-     On top of that, `print_r($_Post)` was returning `Array ( [total_input] => [ [five] => 5 )`.
+     On top of that, `print_r($_Post)` was returning `Array ( [total_input] => [ [five] => 5 )`. Using `gettype()` would have made the problem more obvious by returning `NULL`.
 3. This led me to isolate `json_encode()` and `json_decode()` as the main suspects. I read the documentation, and used `json_last_error_msg()` which confirmed a synthax error.
 4. Additionnally, after adding a first digit to the array, the hidden input would have a value of `"[" digit"]"=""` instead of `"["digit"]"`.
 
