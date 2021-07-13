@@ -24,19 +24,20 @@ if(isset($_POST)) {
       if(!in_array(".", $current_input)) 
         $current_input[] = $value;
       break;  
-    // case($_POST[$key] === "+"):
-    //   break;
-    // case($_POST[$key] === "-"):
-    //   break;
-    // case($_POST[$key] === "*"):
-    //   break;
-    // case($_POST[$key] === "/"):
-    //   break;
+    case($_POST[$key] === "+"):
+    case($_POST[$key] === "-"):
+    case($_POST[$key] === "*"):
+    case($_POST[$key] === "/"):
+      //Need to handle case where a number ends with a period
+      if(count($current_input) > 0 && is_numeric($current_input[count($current_input)-1])) 
+        array_push($total_input, implode("", $current_input), $value);
+        $current_input = [];
+      break;
     // case($_POST[$key] === "="):
     //   break;
-    // case($_POST[$key] === "C"):
-    //   array_pop($total_input);
-    //   break;  
+    case($_POST[$key] === "C"):
+      $current_input = [];
+      break;  
     case($value === "AC"):
       $current_input = [];
       $calculation = [];
