@@ -1,20 +1,30 @@
 
-  <?php
-
+<?php
 
 $total_input = [];
 $current_input = [];
+$previous_input = [];
 $result = 0;
-$previous_calculation = [];
+print_r($_POST);
+
+function doTheMath ($arr_inputs){
+  $arr_inputs = preg_replace("[^0-9\.+\-*\/]", "", $arr_inputs);
+  return eval("return " . implode(" ", $arr_inputs) . ";");
+}
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){ 
   if(isset($_POST["total_input"]))
-    $total_input = json_decode($_POST['total_input']);
-    $current_input = json_decode($_POST['current_input']);
+    $total_input = json_decode($_POST["total_input"]);
+  if(isset($_POST["current_input"]))
+    $current_input = json_decode($_POST["current_input"]);
+  if (isset($_POST["previous_input"]))
+    $previous_input = json_decode($_POST["previous_input"]);
+  if (isset($_POST["$result"]))
+    $result = json_decode($_POST["$result"]);
 
 if(isset($_POST)) {
  foreach($_POST as $key => $value) {
-   if($key != "total_input")
+   if($key != "total_input" && $key != "current_input" && $key != "previous_input" && $key != "result") // Shorter synthax?
    switch($value){
     case "0": //Need to solve is_numeric("0") returning false
     case is_numeric($value):
@@ -29,12 +39,22 @@ if(isset($_POST)) {
     case "*":
     case "/":
       //Need to handle case where a number ends with a period
-      if(count($current_input) > 0 && is_numeric($current_input[count($current_input)-1])) 
+      if(count($current_input) > 0 && is_numeric($current_input[count($current_input)-1]))
         array_push($total_input, implode("", $current_input), $value);
         $current_input = [];
       break;
-    // case($value === "="):
-    //   break;
+    case($value === "="):
+      if(count($current_input) === 0) {
+        array_pop($total_input);
+      } else {
+        array_push($total_input, implode("", $current_input));
+      }
+      $result = doTheMath($total_input);
+      echo "Result is " . $result;
+      $previous_input = $total_input;
+      $current_input = [];
+      $total_input = [];
+      break;
     case "C":
       $current_input = [];
       break;  
@@ -73,9 +93,11 @@ if(isset($_POST)) {
         <div id="display">
             <input type="hidden" name="total_input" value='<?php echo json_encode($total_input) ?>' >
             <input type="hidden" name="current_input" value='<?php echo json_encode($current_input) ?>' >
+            <input type="hidden" name="previous_input" value='<?php echo json_encode($previous_input) ?>' >
+            <input type="hidden" name="result" value='<?php echo json_encode($result) ?>' >
             <p><?= implode("", $total_input) . implode("", $current_input); ?></p>
-            <input type="text" name="result" value="<?= $result; ?>" disabled>
-        </div> <!--check-->
+            <input type="text" name="result" value="<?php echo $result ?>" disabled>
+        </div>
         <div class="row">
             <input type="submit" value="AC" name="clear-all">
             <input type="submit" value="C" name="clear">
