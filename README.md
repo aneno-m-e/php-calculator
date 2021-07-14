@@ -1,6 +1,7 @@
 # php-calculator
 
-A simple calculator in PHP
+A simple calculator in PHP.
+The HTML and CSS is taken from my Javascript calculator. While using submit buttons as a form of input isn't an efficient and appropriate solution for a calculator, the purpose of this project was to apply what I learned from tutorials and to understand php better through practice.
 
 As it is an exercise to learn PHP and how to use it, I'm documenting some of the problems I encountered and how I solved them.
 
@@ -35,7 +36,7 @@ After solving the previous issue, my code would store the first input but breack
    - the array: and it returned nothing.
      On top of that, `print_r($_Post)` was returning `Array ( [total_input] => [ [five] => 5 )`. Using `gettype()` would have made the problem more obvious by returning `NULL`.
 3. This led me to isolate `json_encode()` and `json_decode()` as the main suspects. I read the documentation, and used `json_last_error_msg()` which confirmed a synthax error.
-4. Additionnally, after adding a first digit to the array, the hidden input would have a value of `"[" digit"]"=""` instead of `"["digit"]"`.
+4. Additionnally, after adding a first digit to the array, the hidden input had a value of `"[" digit"]"=""` instead of `"["digit"]"`.
 
 **Solution**:
 My original code was `value="<?php echo json_encode($total_input) ?>"`.  
