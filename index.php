@@ -30,8 +30,11 @@ if(isset($_POST)) {
       array_push($current_input, $value);
       break;
     case ".":
-      if(!in_array(".", $current_input)) 
+      if (count($current_input) === 0) {
+        $current_input[0] = "0" . $value;
+      } elseif (!in_array(".", $current_input)) {
         $current_input[] = $value;
+      }
       break;  
     case "+":
     case "-":
@@ -90,14 +93,15 @@ if(isset($_POST)) {
     <main>
 
     <form action="" id="calculator" method="post">
+      <input type="hidden" name="total_input" value='<?php echo json_encode($total_input) ?>' >
+      <input type="hidden" name="current_input" value='<?php echo json_encode($current_input) ?>' >
+      <input type="hidden" name="previous_input" value='<?php echo json_encode($previous_input) ?>' >
+      <input type="hidden" name="result" value='<?php echo json_encode($result) ?>' >
         <div id="display">
-            <input type="hidden" name="total_input" value='<?php echo json_encode($total_input) ?>' >
-            <input type="hidden" name="current_input" value='<?php echo json_encode($current_input) ?>' >
-            <input type="hidden" name="previous_input" value='<?php echo json_encode($previous_input) ?>' >
-            <input type="hidden" name="result" value='<?php echo json_encode($result) ?>' >
             <p><?= implode("", $total_input) . implode("", $current_input); ?></p>
-            <input type="text" name="result" value="<?php echo $result ?>" disabled>
+            <p><?php echo $result ?></p>
         </div>
+        <div id="controls">
         <div class="row">
             <input type="submit" value="AC" name="clear-all">
             <input type="submit" value="C" name="clear">
@@ -128,6 +132,7 @@ if(isset($_POST)) {
           <input type="submit" value="=" name="equals">
           
         </div>
+</div>
 </form>
     </main>
  

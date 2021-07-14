@@ -28,7 +28,7 @@ main {
 /* Calculator */
 
 #calculator {
-  width: 30em;
+  width: 28em;
   margin: 0 auto;
 }
 
@@ -36,21 +36,27 @@ main {
   text-align: center;
 }
 
-#calculator #display {
-  width: 32.5em;
-  height: 3em;
-  margin-bottom: 0.2em;
-}
-
 #calculator .row {
   text-align: left;
   padding-top: 0.2em;
 }
 
-#calculator .row input {
+#calculator .row > input {
   width: 8em;
   height: 4em;
 }
 
-/* #calculator input {
-  } */
+#calculator #display {
+  width: 27.5em;
+  margin-bottom: 0.2em;
+  padding: 0 2em;
+  box-sizing: border-box;
+  background: rgb(128, 150, 154);
+}
+
+#calculator #display > p {
+  color: black;
+  text-align: right;
+  height: 2em;
+  line-height: 2em;
+}
