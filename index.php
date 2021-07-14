@@ -49,7 +49,6 @@ if(isset($_POST)) {
         array_push($total_input, implode("", $current_input));
       }
       $result = doTheMath($total_input);
-      echo "Result is " . $result;
       $previous_input = $total_input;
       $current_input = [];
       $total_input = [];
@@ -64,6 +63,7 @@ if(isset($_POST)) {
     case "Ans":
       $current_input = [];
       $total_input = $previous_input;
+      $previous_input = [];
       break; 
    }
  
