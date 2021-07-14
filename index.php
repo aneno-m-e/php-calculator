@@ -5,7 +5,6 @@ $total_input = [];
 $current_input = [];
 $previous_input = [];
 $result = 0;
-print_r($_POST);
 
 function doTheMath ($arr_inputs){
   $arr_inputs = preg_replace("[^0-9\.+\-*\/]", "", $arr_inputs);
@@ -44,9 +43,9 @@ if(isset($_POST)) {
         $current_input = [];
       break;
     case($value === "="):
-      if(count($current_input) === 0) {
+      if (count($current_input) === 0) {
         array_pop($total_input);
-      } else {
+      } elseif (!is_numeric($total_input[count($total_input) - 1])) {
         array_push($total_input, implode("", $current_input));
       }
       $result = doTheMath($total_input);
@@ -62,9 +61,10 @@ if(isset($_POST)) {
       $current_input = [];
       $total_input = [];
       break;  
-    // case "Ans":
-    //   $calculation = $previous_calculation;
-    //   break; 
+    case "Ans":
+      $current_input = [];
+      $total_input = $previous_input;
+      break; 
    }
  
  }}
