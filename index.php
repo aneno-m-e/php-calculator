@@ -27,7 +27,11 @@ if(isset($_POST)) {
    switch($value){
     case "0": //Need to solve is_numeric("0") returning false
     case is_numeric($value):
-      array_push($current_input, $value);
+      if($current_input[0] === "0") {
+        $current_input[0] = $value;       //Better handled with array_shift()?
+      } else {
+        $current_input[] = $value;
+      }
       break;
     case ".":
       if (count($current_input) === 0) {
